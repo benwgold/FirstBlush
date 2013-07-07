@@ -15,6 +15,8 @@ class Facebooklogin extends CI_Controller {
         $this->facebook->destroySession();
 
         $user = $this->facebook->getUser();
+        $data['appId'] = $this->facebook->getAppId();
+
         if ($user) {
             try {
                 $this->load->model('facebook/basicinfo');
@@ -22,15 +24,14 @@ class Facebooklogin extends CI_Controller {
                 $this->load->model('database/photos_db');
                 $userdata = $this->basicinfo->getUserInfo();
                 $query = $this->users->fetch_user($userdata['facebook_id']);
+                //Check if the user is new to the site
                 if ($this->users->isNew($query)){
                     //Insert to users table
                     $this->users->insert_new_user($userdata);
                     $userdata['credits'] = 0;
-                    //Fetch and insert photos
-                    $this->load->model('facebook/photos_fb');
-                    $photos = $this->photos_fb->getUserPhotos();
-                    $this->photos_db->insert_photos_first_time($userdata['facebook_id'], $photos);
+                    redirect('/gettingstarted/step/1');
                 }
+                //If not, redirect to home controller (as of now, just gets all photos, doesnt redirect)
                 else{
                     $row = $query->row_array();
                     $userdata = array(
@@ -42,21 +43,18 @@ class Facebooklogin extends CI_Controller {
                 }
                 $data['photos'] = $photos;
                 $data['user_profile'] = $userdata;
+                $data['logout_url'] = $this->facebook->getLogoutUrl();
+                $this->load->template('allphotos',$data);
             } catch (FacebookApiException $e) {
                 $user = null;
                 print_r('Oops! There has been a problem with the facebook API.');
             }
         }
-
-        if ($user) {
-            $data['logout_url'] = $this->facebook->getLogoutUrl();
-        } else {
+        else{
             $params = array('scope' => 'user_photos,user_birthday');
             $data['login_url'] = $this->facebook->getLoginUrl($params);
+            $this->load->template('welcomeview', $data);
         }
-        $data['appId'] = $this->facebook->getAppId();
-
-        $this->load->view('facebookloginview',$data);
     }
 }
 ?>
