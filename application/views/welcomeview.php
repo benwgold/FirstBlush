@@ -2,7 +2,7 @@
                     <div class="logincontainer">
                         <a href="<?php echo $login_url ?>" class="loginlink">
                         <div class="fbbg">
-                        <!--<img src='/assets/img/Connect-fb.png' alt="Sign in Button" class="loginimage"/>-->
+                        <!--<img src='/assets/images/Connect-fb.png' alt="Sign in Button" class="loginimage"/>-->
                         </div>
 
                         </a>

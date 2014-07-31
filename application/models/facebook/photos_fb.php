@@ -1,7 +1,11 @@
  <?php
     class Photos_fb extends CI_Model{
         function getUserPhotos(){
-            $photodata = $this->facebook->api('/me/photos', 'GET');
+            $photoConfig = $this->config->item('app_general_configs');
+
+
+            $photodata = $this->facebook->api('/me/photos?type=tagged', 'GET');
+
             $photos = $photodata['data'];
            /*
             $imagesWide = array();
@@ -24,10 +28,17 @@
                     //$imagesSquare[$s] = $photos[$i]['images'][6]['source'];
                     $shape = 'square';
                 }
-                $photos[$i] = (object) (array('big' => $photos[$i]['images'][3]['source'],
-                                                'small' => $photos[$i]['images'][6]['source'],
+                $photos[$i] = (object) (array('big' => array(
+                                                    'image' =>$photos[$i]['images'][6]['source'],
+                                                    'height'=>$photos[$i]['images'][6]['height'],
+                                                    'width' =>$photos[$i]['images'][6]['width']),
+                                                'small' => array(
+                                                    'image' =>$photos[$i]['images'][3]['source'],
+                                                    'height'=>$photos[$i]['images'][3]['height'],
+                                                    'width' =>$photos[$i]['images'][3]['width']),
                                                 'thumb' => $photos[$i]['picture'],
-                                                'shape' => $shape));
+                                                //'caption' => $photos[$i]['name']
+                                                ));
             }
             //$images['0'] = $photos['0']['source'];
             /*

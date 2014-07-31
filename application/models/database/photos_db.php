@@ -2,8 +2,8 @@
     class Photos_db extends CI_Model{
         function insert_photos_first_time($user_id, $photos){
             for($i=0; $i<count($photos); $i++){
-                $string = "insert into user_photos(user_id, user_photo_id, link_big, link_small, link_thumb, shape) values(
-                '".$user_id."', '".$i."', '".$photos[$i]->big."', '".$photos[$i]->small."', '".$photos[$i]->thumb."', '".$photos[$i]->shape."');";
+                $string = "insert into user_photos(user_id, user_photo_id, link_big, link_small, link_thumb, shape, caption) values(
+                '".$user_id."', '".$i."', '".$photos[$i]->big."', '".$photos[$i]->small."', '".$photos[$i]->thumb."', '".$photos[$i]->shape."', '".$photos[$i]->caption."');";
                 $query = $this->db->query($string);
             }
         }

@@ -12,7 +12,7 @@ class Facebooklogin extends CI_Controller {
         $this->config->load('facebook', TRUE);
         $fb_config = $this->config->item('facebook');
         $this->load->library('facebook', $fb_config);
-        $this->facebook->destroySession();
+        #$this->facebook->destroySession();
 
         $user = $this->facebook->getUser();
         $data['appId'] = $this->facebook->getAppId();

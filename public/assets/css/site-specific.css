@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
     overflow: hidden;
-    background: url(/assets/img/Connect-fb.png) -167px -84px;
+    background: url(/assets/images/Connect-fb.png) -167px -84px;
     height: 40px;
     width: 247px;
     position: absolute;
@@ -22,11 +22,11 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
 }
 .logincontainer .fbbg:hover {
-    background: url(/assets/img/Connect-fb.png) -167px -175px;
+    background: url(/assets/images/Connect-fb.png) -167px -175px;
     border
 }
 .logincontainer .fbbg:active {
-    background: url(/assets/img/Connect-fb.png) -167px -266px;
+    background: url(/assets/images/Connect-fb.png) -167px -266px;
 }
 
 .loginlink {
