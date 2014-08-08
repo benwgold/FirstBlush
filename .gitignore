@@ -3,6 +3,7 @@
 #################
 .application/config/
 .application/config/*
+config/
 
 #################
 ## Eclipse
