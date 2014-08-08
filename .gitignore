@@ -1,7 +1,7 @@
 #################
 ## IGNORE CONFIG FOLDER
 #################
-config/
+application/config/
 
 #################
 ## Eclipse
