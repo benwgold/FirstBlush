@@ -2,6 +2,7 @@
 ## IGNORE CONFIG FOLDERfdsf
 #################
 .application/config/
+.application/config/*
 
 #################
 ## Eclipse
